@@ -9,15 +9,9 @@ const userRoutes = require("./routes/user");
 const app = express();
 
 mongoose
-  .connect(
-    "mongodb://localhost:27017/node-angular"
-  )
-  .then(() => {
-    console.log("Connected to database!");
-  })
-  .catch(() => {
-    console.log("Connection failed!");
-  });
+  .connect(process.env.MONGO_URI)
+  .then(() => { console.log("Connected to database!"); })
+  .catch(() => { console.log("Connection failed!"); });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));

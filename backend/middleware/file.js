@@ -13,7 +13,11 @@ const storage = multer.diskStorage({
     if (isValid) {
       error = null;
     }
-    cb(error, "backend/images");
+    if (process.env.NODE_ENV !== 'production') {
+      cb(error, "backend/images");
+    } else {
+      cb(error, "images");
+    }
   },
   filename: (req, file, cb) => {
     const name = file.originalname
